@@ -1,11 +1,13 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function Navbar() {
   const [openNav, setOpenNav] = useState(true);
   const [selectId, setSelectId] = useState(0);
-
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   function navBarOpen() {
     setOpenNav(!openNav);
@@ -17,7 +19,18 @@ function Navbar() {
   }
 
 
+  useEffect(() => {
+    const handleStart = (url) => setLoading(true);
+    const handleComplete = (url) => setLoading(false);
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
 
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+    };
+
+  }, [router.events]);
 
   const navMenu = [
     {
@@ -32,23 +45,32 @@ function Navbar() {
     },
     {
       id: 3,
+      name: 'РЕЦЕПТЫ',
+      url: '/recipes'
+    },
+    {
+      id: 4,
       name: 'МАГАЗИНЫ',
       url: '/shop'
     },
     {
-      id: 4,
+      id: 5,
       name: 'НОВОСТИ',
       url: '/news'
     },
-    {
-      id: 5,
-      name: 'РЕЦЕПТЫ',
-      url: '/recipes'
-    },
+    
 
 
   ]
 
+  useEffect(() => {
+    const currentLink = navMenu.find((link) => link.url === router.pathname);
+
+    if (currentLink) {
+      setSelectId(currentLink.id)
+    }
+
+  }, [router.pathname])
 
 
   return (
@@ -113,8 +135,8 @@ function Navbar() {
       <div className="container flex justify-between overflow-x-auto  flex-nowrap">
         <ul className="mt-14 flex  items-center flex-nowrap">
           {navMenu.map((link) => (
-            <li key={link.id} onClick={() => select(link.id)}>
-              <Link href={link.url} className={`block font-bold ${link.id === selectId ? 'link-active' : ''} px-7`}>
+            <li key={link.id} onClick={() => select(link.id)} className={`${link.id === selectId ? 'link-active' : ''}`}>
+              <Link href={link.url} className={`block  font-bold`}>
                 {link.name}
               </Link>
             </li>
@@ -122,19 +144,22 @@ function Navbar() {
 
         </ul>
 
-        <ul className="mt-14  flex items-center flex-nowrap">
+        <ul className="mt-14  flex items-center flex-nowrap gap-8">
           <li>
-            <Link href={"#"} className="block font-bold w-36 text-center">
+            <Link href={"#"} className="block font-bold  text-center">
               ДЛЯ ПАРТНЁРОВ
             </Link>
           </li>
           <li>
-            <Link href={"#"} className="block font-bold w-36 text-center">
+            <Link href={"#"} className="block font-bold text-center">
               КАРЬЕРА
             </Link>
           </li>
         </ul>
       </div>
+      
+      {loading && <div className="loading-indicator">Loading...</div>}
+    
     </nav>
   );
 }

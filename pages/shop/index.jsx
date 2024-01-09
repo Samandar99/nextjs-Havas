@@ -3,7 +3,7 @@ import React from 'react'
 function Shop() {
     return (
         <div>
-            Shop
+            <h1 className='text-9xl'>Shop Soon Ready this page</h1>
         </div>
     )
 }

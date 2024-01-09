@@ -14,7 +14,7 @@ function Footer() {
                             <div className='map__sub mt-24 mb-4'>
                                 <span className='text-2xl'>Позвоните нам</span>
                                 <div className='flex gap-4 mt-6 mb-8'>
-                                    <Image src="/icons/call.svg" width={30} height={30} priority={true} alt='call' />
+                                    <Image src="/icons/call.svg" width={30} height={30} priority={true} alt='call' style={{ width: 'auto', height: 'auto' }}/>
                                     <a href='tel:+998(71) 205-95-95' className='text-2xl'>+998(71) 205-95-95</a>
                                 </div>
                                 <span className='text-2xl'>Напишите нам</span>
