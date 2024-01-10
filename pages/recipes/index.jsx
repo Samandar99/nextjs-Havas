@@ -32,11 +32,11 @@ function Recipes() {
 
 
               <div className='cart' key={item.id}>
-                <Image className='rounded-2xl' src={item.img} width={327} height={560} alt='cart' priority={true} />
+                <Image className='rounded-2xl max-h-80' src={item.img} width={327} height={560} alt='cart' priority={true} />
                 <div className='mt-9 '>
                   <h3 className='text-xl font-bold mb-7'>{item.title}</h3>
 
-                  {item.info.map((infoItem, index) => (
+                  {item.info?.map((infoItem, index) => (
                     <p className='text-gray-400 pb-1' key={index}>{infoItem}</p>
                   ))}
 

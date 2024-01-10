@@ -3,36 +3,16 @@ import { router, useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 function Dashboard() {
-  const generateRandomId = () => {
-    // Функция для генерации случайного id
-    return Math.random().toString(36).substr(2, 9);
-  };
+
 
   const { status, data } = useSession();
   const { router } = useRouter();
   const [goods, setGoods] = useState([]);
-  const [formData, setFormData] = useState({ title: '', id: generateRandomId() });
-  const [file, setFile] = useState(null)
 
+  const [cartTitle, setCartTitle] = useState('');
+  const [img, setImgUrl] = useState('');
+  const [info, setInfo] = useState([''])
 
-  console.log(formData);
-
-
-
-  async function handleAddProduct(e) {
-    e.preventDefault();
-
-    const response = await fetch('http://localhost:3000/api/products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title: formData.title, id: formData.id }),
-    });
-
-    const data = await response.json();
-    console.log(data);
-  }
 
 
   useEffect(() => {
@@ -47,6 +27,27 @@ function Dashboard() {
     if (status === "unauthenticated") router.replace("/auth/signin");
   }, [status])
 
+
+  const submitProducts = async (e) => {
+    e.preventDefault();
+
+    const infoArray = info.split(" ");
+
+    const response = await fetch('http://localhost:3000/api/products', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: cartTitle,
+        img: img,
+        info: infoArray
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await response.json();
+    window.location.reload();
+  }
 
 
 
@@ -123,7 +124,7 @@ function Dashboard() {
             <h2 className='text-white'>Info-Cart</h2>
             <h2 className='text-white'>Operations</h2>
           </div>
-          {/* {goods.map((el) => (
+          {goods.map((el) => (
             <div className='flex justify-between mt-4 items-start' key={el.id}>
 
               <p className='w-28'>{el.title}</p>
@@ -131,14 +132,15 @@ function Dashboard() {
               <p className='w-28'>Lorem ipsum dolor sit amet.</p>
               <button className='bg-red-700 py-2 min-h-7 max-w-20 w-full rounded-md text-white cursor-pointer'>dell</button>
             </div>
-          ))} */}
+          ))}
 
-          <form onSubmit={handleAddProduct}  className='flex flex-col mt-6'>
-
+          <form className='flex flex-col mt-6' onSubmit={submitProducts}>
             <label className='mt-3'>Cart-Title</label>
-            <input onChange={e => setFormData({ ...formData, title: e.target.value })} className='border py-2 rounded-md px-3' placeholder='Cart-Title' type="text" />
+            <input onChange={(e) => setCartTitle(e.target.value)} className='border py-2 rounded-md px-3' placeholder='Cart-Title' type="text" />
+            <label className='mt-3'>needs   </label>
+            <input onChange={(e) => setInfo(e.target.value)} type="text" placeholder='your need' className='border py-2 rounded-md px-3' />
             <label className='mt-3'>Img</label>
-            {/* <input type="file" /> */}
+            <input type="text" placeholder='urlImg' className='border py-2 rounded-md px-3' onChange={(e) => setImgUrl(e.target.value)} />
             <button className='bg-green-600 max-w-20 py-2 rounded-md text-white mt-6'>add</button>
           </form>
 
