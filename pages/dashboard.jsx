@@ -5,7 +5,7 @@ import Image from 'next/image';
 function Dashboard() {
 
 
-  const { status, data } = useSession();
+  // const { status, data } = useSession();
   const { router } = useRouter();
   const [goods, setGoods] = useState([]);
 
@@ -23,9 +23,9 @@ function Dashboard() {
 
 
 
-  useEffect(() => {
-    if (status === "unauthenticated") router.replace("/auth/signin");
-  }, [status])
+  // useEffect(() => {
+  //   if (status === "unauthenticated") router.replace("/auth/signin");
+  // }, [status])
 
 
   const submitProducts = async (e) => {
@@ -51,7 +51,7 @@ function Dashboard() {
 
 
 
-  if (status === "authenticated") {
+  // if (status === "authenticated") {
     return (
       <div className='flex'>
         <aside className='inline-flex flex-col justify-between w-64 bg-slate-200 min-h-screen  py-10'>
@@ -156,8 +156,8 @@ function Dashboard() {
 
   }
 
-  return <div>Loading</div>
-}
+  // return <div>Loading</div>
+// }
 
 
 
@@ -171,4 +171,4 @@ function DashboardPage() {
   )
 }
 
-export default DashboardPage
+export default Dashboard
