@@ -69,7 +69,7 @@ function Dashboard() {
               <li className='trans duration-150 ease-in-out mb-4 bg-gradient-to-r hover:from-gray-400 hover:to-gray-200 max-w-56 py-3 rounded-md px-6 trans'>
                 <a href="#" className='flex gap-5'>
                   <Image src="/icons/home.svg" height={20} width={20} priority={true} alt='home-img' />
-                  <span>Home</span>
+                  <span>Рецепты</span>
                 </a>
               </li>
               <li className='trans duration-150 ease-in-out mb-4 bg-gradient-to-r hover:from-gray-400 hover:to-gray-200 max-w-56 py-3 rounded-md px-6 trans'>
@@ -117,6 +117,7 @@ function Dashboard() {
         </aside>
 
         <div className=' inline-flex justify-between ml-9 mt-9 max-w-5xl w-full flex-col'>
+          <h2 className='mb-5 font-extrabold text-5xl'>Рецепты</h2>
           <div className='flex justify-between flex-grow px-3 py-3 bg-slate-700 rounded-md'>
 
             <h2 className='text-white'>Cart-Title</h2>
