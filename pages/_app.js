@@ -1,13 +1,15 @@
+import React from 'react';
 import Layout from "@/components/layout";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
-
-export default function App({ Component, pageProps }) {
+import PropTypes from 'prop-types';
+export default function App({ Component }) {
   return (
     <Layout>
-      <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
-      </SessionProvider>
+      <Component  />
     </Layout>
   );
 }
+App.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+};

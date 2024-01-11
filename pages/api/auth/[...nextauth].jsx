@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import React from 'react';
 const authOptions = {
   session: {
     strategy: "jwt",
