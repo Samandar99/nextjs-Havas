@@ -16,7 +16,7 @@ function Dashboard() {
 
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/products')
+    fetch('https://nextjs-havas.vercel.app/api/products')
       .then((res) => res.json())
       .then((data) => setGoods(data))
   }, [])
@@ -33,7 +33,7 @@ function Dashboard() {
 
     const infoArray = info.split(" ");
 
-    const response = await fetch('http://localhost:3000/api/products', {
+    const response = await fetch('https://nextjs-havas.vercel.app/products', {
       method: 'POST',
       body: JSON.stringify({
         title: cartTitle,
