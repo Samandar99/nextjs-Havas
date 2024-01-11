@@ -33,7 +33,7 @@ function Dashboard() {
 
     const infoArray = info.split(" ");
 
-    const response = await fetch('https://nextjs-havas.vercel.app/products', {
+    const response = await fetch('https://nextjs-havas.vercel.app/api/products', {
       method: 'POST',
       body: JSON.stringify({
         title: cartTitle,
