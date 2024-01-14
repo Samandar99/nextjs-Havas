@@ -12,7 +12,7 @@ function Details() {
     useEffect(() => {
         if (id) {
 
-            fetch(`https://nextjs-havas.vercel.app/products?id=${id}`)
+            fetch(`https://nextjs-havas.vercel.app/api/products?id=${id}`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error(`HTTP error! Status: ${res.status}`);
