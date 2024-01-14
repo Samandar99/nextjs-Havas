@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Aside from './Aside';
 import { useRouter } from 'next/router';
 
+// eslint-disable-next-line react/prop-types
 function Layout({ children }) {
   const router = useRouter();
   const isSigninPage = router.pathname === '/auth/signin';
@@ -30,5 +31,7 @@ function Layout({ children }) {
     </div>
   );
 }
+
+
 
 export default Layout;
