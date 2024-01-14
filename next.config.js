@@ -7,6 +7,6 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['img.freepik.com'], // Добавьте хост вашего изображения в этот массив
+    domains: ['rgo.ru', 'example.com', 'another-domain.com','img.freepik.com'], 
   },
 };

@@ -1,22 +1,25 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
-import Signin from '@/pages/auth/signin';
-import { useRouter } from 'next/router'
-import Dashboard from '@/pages/dashboard';
-import PropTypes from 'prop-types';
+// components/Layout.jsx
+
+import React from 'react';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import Aside from './Aside';
+import { useRouter } from 'next/router';
+
 function Layout({ children }) {
   const router = useRouter();
   const isSigninPage = router.pathname === '/auth/signin';
-  const isDashboard = router.pathname === '/dashboard'
-
+  const isDashboard = router.pathname.startsWith('/admin');
 
   return (
     <div className='content'>
       {isDashboard ? (
-        <Dashboard />
-      ) : isSigninPage ? (
-        <Signin />
+        <div className='flex'>
+          <Aside />
+          <div className='dashboard-content'>
+            {children}
+          </div>
+        </div>
       ) : (
         <>
           <Navbar />
@@ -25,11 +28,7 @@ function Layout({ children }) {
         </>
       )}
     </div>
-  )
+  );
 }
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
-
-export default Layout
+export default Layout;

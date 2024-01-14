@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,26 +9,28 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import SwiperCore from "swiper/core";
+import Carusel from "@/components/Carusel";
+
+
 function Home() {
 
-  SwiperCore.use([Autoplay]);
+  const [infoText, setInfoText] = useState('')
+
+  // console.log(infoText);
+
+  useEffect(() => {
+    fetch('https://nextjs-havas.vercel.app/infomain')
+      .then((res) => res.json())
+      .then((data) => setInfoText(data))
+
+  }, [])
+
+
+
+
   return (
     <div className="mt-10">
-      <Swiper
-        pagination={{
-          type: "fraction",
-        }}
-        navigation={true}
-        modules={[Navigation]}
-        className="mySwiper"
-        autoplay={{ delay: 3000 }}
-      >
-        <SwiperSlide>
-          <Image className="banner" src="/images/home-banner-1.png" alt="me" width="1000" height="611" priority={true} />
-        </SwiperSlide>
-        <SwiperSlide><Image className="banner" src="/images/magazine-banner.png" alt="me" width="1000" height="611" priority={true} /></SwiperSlide>
-
-      </Swiper>
+      <Carusel />
       <main>
         <div className="container stic">
           <Image className="back_img  " src="/images/cart.png" alt="cart" width={500} height={400} priority={true} />
@@ -177,11 +179,8 @@ function Home() {
 
 
         <div className="container">
-          <h3 className="sub-2 mt-20 font-extrabold text-2xl">О НАС</h3>
-          <p className="mt-12 about-title">HAVAS - сеть дискаунтеров "у дома".
-            Мы предлагаем нашим покупателям качественные продукты по выгодной цене.
-            В наших магазинах представлены товары известных мировых и локальных брендов, а также товары собственного производства
-            под торговой маркой HAVAS</p>
+          <h3 className="sub-2 mt-20 font-extrabold text-2xl">{infoText.title}</h3>
+          <p className="mt-12 about-title">{infoText.text}</p>
 
         </div>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link';
 
 function Recipes() {
 
@@ -40,7 +41,7 @@ function Recipes() {
                     <p className='text-gray-400 pb-1' key={index}>{infoItem}</p>
                   ))}
 
-                  <a href="#" className='more transition-colors hover:bg-green-700 hover:border-green-700 hover:text-white mt-7 text-center py-3 text-orange-500 text-lg rounded-3xl max-w-52 border border-orange-500'>Подробнее...</a>
+                  <Link href={"/recipes/" + item.id} className='more transition-colors hover:bg-green-700 hover:border-green-700 hover:text-white mt-7 text-center py-3 text-orange-500 text-lg rounded-3xl max-w-52 border border-orange-500'>Подробнее...</Link>
 
                 </div>
               </div>

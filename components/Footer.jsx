@@ -5,7 +5,7 @@ import Link from 'next/link'
 function Footer() {
     return (
         <footer>
-            <div className='map mt-40 py-28'>
+            <div className='map py-28'>
                 <div className='container'>
                     <div className='footer__block flex gap-10 items-center 2xl:px-3 xl:px-3 lg:px-3 md:px-3 sm:px-3 flex-wrap 2xl: justify-center '>
                         <div className='left'>
