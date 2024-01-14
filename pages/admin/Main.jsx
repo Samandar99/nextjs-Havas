@@ -9,7 +9,7 @@ function Main() {
     // console.log(dataTitle);
     // console.log(dataText);
     useEffect(() => {
-        fetch('https://nextjs-havas.vercel.app/infomain')
+        fetch('https://nextjs-havas.vercel.app/api/infomain')
             .then((res) => res.json())
             .then((data) => setDataInfo(data))
 
@@ -19,7 +19,7 @@ function Main() {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://nextjs-havas.vercel.app/infomain', {
+            const response = await fetch('https://nextjs-havas.vercel.app/api/infomain', {
                 method: 'PUT',
                 body: JSON.stringify({
                     title: dataTitle,
